@@ -1,0 +1,29 @@
+from sys import argv
+
+
+def task4(file_name):
+    def read_file(file_name):
+        with open(file_name) as f:
+            data = []
+            for x in f.readlines():
+                data.append(int(x))
+        return data
+
+    def min_moves(array):
+        steps = 0
+        mean_num = sorted(array)[len(array) // 2]
+        for i in array:
+            steps += abs(i - mean_num)
+        return steps
+
+    moves = min_moves(read_file(file_name))
+
+    if moves <= 20:
+        print(moves)
+    else:
+        print("20 ходов недостаточно для приведения всех элементов массива к одному числу.")
+
+
+if __name__ == "__main__":
+    data_array = argv[1]
+    task4(data_array)
